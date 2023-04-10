@@ -1,0 +1,19 @@
+explorer
+https://testnet.algoexplorer.io/
+
+rpc node
+https://node.testnet.algoexplorerapi.io
+https://node.algoexplorerapi.io/
+
+python sdk
+https://github.com/algorand/py-algorand-sdk
+
+docs
+https://developer.algorand.org/zh-hans/
+
+offical go implementation, with cli goal
+the way to connect to mainNet or testNet is to setup a instance of this app
+https://github.com/algorand/go-algorand
+
+algokit is the smart contract dev tool
+https://github.com/algorandfoundation/algokit-cli

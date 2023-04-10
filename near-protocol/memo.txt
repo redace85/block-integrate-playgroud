@@ -1,0 +1,5 @@
+explorer
+https://explorer.testnet.near.org/
+
+docs
+https://docs.near.org/concepts/web3/near

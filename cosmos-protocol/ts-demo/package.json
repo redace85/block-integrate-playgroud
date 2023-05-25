@@ -1,0 +1,21 @@
+{
+  "name": "ts-demo",
+  "version": "1.0.0",
+  "description": "comsj demo",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "gtx": "node src/gen-send-tx.js",
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cosmjs/amino": "^0.30.1",
+    "@cosmjs/proto-signing": "^0.30.1",
+    "@cosmjs/stargate": "^0.30.1",
+    "cosmjs-types": "^0.7.2",
+    "dotenv": "^16.0.3"
+  }
+}

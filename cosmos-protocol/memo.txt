@@ -1,0 +1,9 @@
+explorer
+https://testnet.keplr.app/
+
+rpc node test
+https://rest.seed-01.theta-testnet.polypore.xyz
+
+rpc node main
+https://cosmos-mainnet-rpc.allthatnode.com:1317
+

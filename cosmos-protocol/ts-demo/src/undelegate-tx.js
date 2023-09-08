@@ -1,13 +1,14 @@
 import { 
-	DirectSecp256k1Wallet,
-	Registry, 
-	encodePubkey,
-	makeAuthInfoBytes,
-	makeSignDoc,
+  DirectSecp256k1Wallet,
+  Registry, 
+  encodePubkey,
+  makeAuthInfoBytes,
+  makeSignDoc,
 } from "@cosmjs/proto-signing";
 import { fromBase64, toBase64 } from "@cosmjs/encoding";
 import { encodeSecp256k1Pubkey, } from "@cosmjs/amino";
 
+import { MsgUndelegate } from "cosmjs-types/cosmos/staking/v1beta1/tx.js";
 import { TxRaw } from "cosmjs-types/cosmos/tx/v1beta1/tx.js";
 
 import * as dotenv from 'dotenv'
@@ -18,45 +19,60 @@ const accountNumber = process.env.ACC_NUM;
 const sequence = process.env.SEQ;
 const chainId = "theta-testnet-001";
 
-const gasLimit = 90000;
 const memo = "manual tx";
+
+const gasLimit = 500000;
+const gasAmount = {
+  denom: "uatom",
+  amount: "5000",
+};
 
 const pk = Uint8Array.from(Buffer.from(pkstr, 'hex'));
 const wallet = await DirectSecp256k1Wallet.fromKey(pk);
 const [account] = await wallet.getAccounts();
 console.log(account);
 
-const recipient = "cosmos1txpja995am9hffzc05ux8qj7ra7vq4ng93fm3s";
 const amount = {
   denom: "uatom",
-  amount: "500000",
+  amount: "1000000",
 };
 
-const sendMsg = {
-      typeUrl: "/cosmos.bank.v1beta1.MsgSend",
-      value: {
-        fromAddress: account.address,
-        toAddress: recipient,
-        amount: [amount],
-      },
-    };
+const validator1 = "cosmosvaloper1uy97y2f8fm7l28tl0mr75pgdaf2rzxsg33zfpq";
+const deMsg1 = {
+  typeUrl: "/cosmos.staking.v1beta1.MsgUndelegate",
+  value: {
+    delegatorAddress: account.address,
+    validatorAddress: validator1,
+    amount: amount,
+  },
+};
 
+const validator2 = "cosmosvaloper13n6wqhq8la352je00nwq847ktp47pgknseu6kk";
+const deMsg2 = {
+  typeUrl: "/cosmos.staking.v1beta1.MsgUndelegate",
+  value: {
+    delegatorAddress: account.address,
+    validatorAddress: validator2,
+    amount: amount,
+  },
+};
 
 const registry = new Registry();
+registry.register("/cosmos.staking.v1beta1.MsgUndelegate", MsgUndelegate);
 
 const pubkey = encodePubkey(encodeSecp256k1Pubkey(account.pubkey));
 
 const txBodyEncodeObject = {
   typeUrl: "/cosmos.tx.v1beta1.TxBody",
   value: {
-    messages: [sendMsg],
+    messages: [deMsg1,deMsg2],
     memo: memo,
   },
 };
 const txBodyBytes = registry.encode(txBodyEncodeObject);
 const authInfoBytes = makeAuthInfoBytes(
   [{ pubkey, sequence }],
-  [{denom: "uatom", amount: "1000"}],
+  [gasAmount],
   gasLimit,
   "",
   "",
@@ -65,10 +81,10 @@ const signDoc = makeSignDoc(txBodyBytes, authInfoBytes, chainId, accountNumber);
 const { signature, signed } = await wallet.signDirect(account.address, signDoc);
 
 const txRaw = TxRaw.fromPartial({
-      bodyBytes: signed.bodyBytes,
-      authInfoBytes: signed.authInfoBytes,
-      signatures: [fromBase64(signature.signature)],
-    });
+  bodyBytes: signed.bodyBytes,
+  authInfoBytes: signed.authInfoBytes,
+  signatures: [fromBase64(signature.signature)],
+});
 
 
 const txBytes = TxRaw.encode(txRaw).finish();

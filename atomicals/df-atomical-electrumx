@@ -40,7 +40,7 @@ COPY --from=builder /usr/src/app .
 
 VOLUME /var/lib/electrumx
 
-RUN mkdir -p "$DB_DIRECTORY" && ulimit -n 1048576
+RUN mkdir -p "$DB_DIRECTORY" && ulimit -n 524288 
 
 CMD ["/usr/src/app/bin/python", "/usr/src/app/electrumx_server"]
 

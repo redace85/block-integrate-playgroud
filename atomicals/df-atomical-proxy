@@ -1,0 +1,22 @@
+# Use an official Node.js runtime as the base image
+FROM node:lts-slim
+
+# Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Install git
+RUN apt-get update && apt-get install -y git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Clone the GitHub repository
+RUN git clone --depth 1 --branch main https://github.com/atomicals/electrumx-proxy.git .
+
+# Install dependencies
+RUN npm install
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Command to run the application
+ENTRYPOINT ["npm", "run", "start"]
+

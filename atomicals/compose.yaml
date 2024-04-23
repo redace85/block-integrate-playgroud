@@ -1,0 +1,29 @@
+services:
+  atomical_proxy:
+    build:
+      context: .
+      dockerfile: df-atomical-proxy
+    ports:
+      - 8080:8080
+    environment:
+      - PORT=8080
+      - ELECTRUMX_PORT=50001
+      - ELECTRUMX_HOST=atomical_electrumx
+    depends_on:
+      - atomical_electrumx
+
+  atomical_electrumx:
+    build:
+      context: .
+      dockerfile: df-atomical-electrumx
+    environment:
+      - DAEMON_URL=http://testbit:testbit@10.60.1.7:18061
+      - SERVICES=tcp://:50001
+      - COIN=Bitcoin
+      - NET=testnet
+    volumes:
+      - type: bind
+        source: ./db 
+        target: /var/lib/electrumx
+
+

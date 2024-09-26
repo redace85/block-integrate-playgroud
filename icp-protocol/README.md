@@ -1,0 +1,20 @@
+# ICP-protocol
+
+
+## icp doc 
+https://internetcomputer.org/docs/current/developer-docs/getting-started/overview-of-icp
+
+## icp explorer 
+https://dashboard.internetcomputer.org/transactions
+查看主网上icp的想过交易信息
+
+## java lib 
+https://github.com/ic4j/ic4j-agent
+
+## dfx tools
+DFX_VERSION=0.14.1 sh -ci "$(curl -sSL https://internetcomputer.org/install.sh)"
+
+## icp_rosetta api
+// api is provided by a unopen-source docker image dfinity/rosetta-api
+https://internetcomputer.org/docs/current/developer-docs/defi/rosetta/icp_rosetta/
+https://internetcomputer.org/docs/current/developer-docs/defi/rosetta/overview

@@ -6,7 +6,6 @@ https://internetcomputer.org/docs/current/developer-docs/getting-started/overvie
 
 ## icp explorer 
 https://dashboard.internetcomputer.org/transactions
-查看主网上icp的想过交易信息
 
 ## java lib 
 https://github.com/ic4j/ic4j-agent

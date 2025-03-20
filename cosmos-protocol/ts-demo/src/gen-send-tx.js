@@ -11,17 +11,18 @@ import { encodeSecp256k1Pubkey, } from "@cosmjs/amino";
 import { TxRaw } from "cosmjs-types/cosmos/tx/v1beta1/tx.js";
 
 import * as dotenv from 'dotenv'
+
 dotenv.config()
 
 const pkstr = process.env.PK;
 const accountNumber = process.env.ACC_NUM;
 const sequence = process.env.SEQ;
 // const chainId = "theta-testnet-001";
-const chainId = "kava_2221-16000";
-const denom = "ukava";
-const addrPrefix = "kava";
+const chainId = "mantra-dukong-1";
+const denom = "uom";
+const addrPrefix = "mantra";
 
-const gasLimit = 100000;
+const gasLimit = 200000;
 const memo = "manual tx";
 
 const pk = Uint8Array.from(Buffer.from(pkstr, 'hex'));
@@ -30,10 +31,10 @@ const [account] = await wallet.getAccounts();
 console.log(account);
 
 // const recipient = "cosmos1txpja995am9hffzc05ux8qj7ra7vq4ng93fm3s";
-const recipient = "kava14n56f7mqm6ny9pjedszeejk7h9ksaf46aqw39r";
+const recipient = "mantra12gh6yae5w2r8t8dqj8e8z8alxwxhym8ah9wkq7";
 const amount = {
   denom: denom, 
-  amount: "500000",
+  amount: "10000",
 };
 
 const sendMsg = {
@@ -60,7 +61,7 @@ const txBodyEncodeObject = {
 const txBodyBytes = registry.encode(txBodyEncodeObject);
 const authInfoBytes = makeAuthInfoBytes(
   [{ pubkey, sequence }],
-  [{denom: denom, amount: "1000"}],
+  [{denom: denom, amount: "2000"}],
   gasLimit,
   "",
   "",
@@ -73,7 +74,6 @@ const txRaw = TxRaw.fromPartial({
       authInfoBytes: signed.authInfoBytes,
       signatures: [fromBase64(signature.signature)],
     });
-
 
 const txBytes = TxRaw.encode(txRaw).finish();
 console.log(toBase64(txBytes));

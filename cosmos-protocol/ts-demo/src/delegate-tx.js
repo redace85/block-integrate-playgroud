@@ -89,3 +89,6 @@ const txRaw = TxRaw.fromPartial({
 
 const txBytes = TxRaw.encode(txRaw).finish();
 console.log(toBase64(txBytes));
+
+const msgEn = registry.encode(deMsg1);
+console.log(msgEn);

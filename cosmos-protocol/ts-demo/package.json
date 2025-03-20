@@ -6,16 +6,21 @@
   "main": "index.js",
   "scripts": {
     "gtx": "node src/gen-send-tx.js",
+    "enx": "node src/encode-signdoc.js",
+    "kep": "node src/keplr-signdata.js",
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cosmjs/amino": "^0.30.1",
-    "@cosmjs/proto-signing": "^0.30.1",
-    "@cosmjs/stargate": "^0.30.1",
-    "cosmjs-types": "^0.7.2",
-    "dotenv": "^16.0.3"
+    "@cosmjs/amino": "^0.33.0",
+    "@cosmjs/proto-signing": "^0.33.0",
+    "@cosmjs/stargate": "^0.33.0",
+    "@keplr-wallet/cosmos": "^0.12.196",
+    "@keplr-wallet/crypto": "^0.12.195",
+    "@keplr-wallet/proto-types": "^0.12.195",
+    "cosmjs-types": "^0.9.0",
+    "dotenv": "^16.4.7"
   }
 }

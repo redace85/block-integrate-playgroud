@@ -20,3 +20,9 @@ https://internetcomputer.org/docs/current/developer-docs/defi/rosetta/overview
 
 docker run -d -p 8081:8081 -v ./rosetta_data:/data dfinity/rosetta-api --mainnet --not-whitelisted
 docker run -d -p 8082:8082 -v ./icrc_data:/data dfinity/ic-icrc-rosetta-api --network-type mainnet --port 8082 --ledger-id mxzaz-hqaaa-aaaar-qaada-cai --store-file /data/db.sqlite
+
+
+## Zilliqa rosetta
+https://github.com/Zilliqa/zilliqa-rosetta
+refer to 
+https://github.com/Zilliqa/zilliqa-rosetta/blob/master/rosetta_standalone/README.md

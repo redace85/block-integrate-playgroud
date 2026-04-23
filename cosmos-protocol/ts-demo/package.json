@@ -8,7 +8,7 @@
     "gtx": "node src/gen-send-tx.js",
     "enx": "node src/encode-signdoc.js",
     "kep": "node src/keplr-signdata.js",
-    "dydx": "node src/dydx-faucet.js",
+    "dydx": "node src/dydx-client.js",
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +18,7 @@
     "@cosmjs/amino": "^0.33.0",
     "@cosmjs/proto-signing": "^0.33.0",
     "@cosmjs/stargate": "^0.33.0",
-    "@dydxprotocol/v4-client-js": "^1.21.0",
+    "@dydxprotocol/v4-client-js": "^1.21.3",
     "@keplr-wallet/cosmos": "^0.12.196",
     "@keplr-wallet/crypto": "^0.12.195",
     "@keplr-wallet/proto-types": "^0.12.195",

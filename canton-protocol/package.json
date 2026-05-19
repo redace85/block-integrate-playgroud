@@ -1,0 +1,15 @@
+{
+  "name": "nodejsdir",
+  "version": "1.0.0",
+  "description": "all kinds of demos block-chain",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@canton-network/wallet-sdk": "^1.0.0"
+  }
+}
